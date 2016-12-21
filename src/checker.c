@@ -429,13 +429,13 @@ int main (int args, char *argv[])
 	if (ret < 0){
 		fprintf(log_fd, "Run recovery service.\n");
 
-#ifndef TX500_MODEL
-		system("ls -la /data/mds/system/sbin/");
-		system("touch /var/recov_5.dat");
+	{
+		system(TOUCH_DIR_CMD);
+		system(TOUCH_RECOV5_CMD);
 		//system("/data/mds/system/sbin/recov_scv.sh");
 		//system("/data/mds/system/sbin/alive.notifier end");
 		//system("/data/mds/system/sbin/pwrd 10 10 &");
-#endif
+	}
 		fclose(log_fd);
 		return 0;
 		
@@ -469,13 +469,13 @@ int main (int args, char *argv[])
 		if(check_link_file(MOND_FILE) < 0) {
 			fprintf(log_fd, "%s file don't exist\n", MOND_FILE);
 			fprintf(log_fd, "Run recovery service.\n");
-			#ifndef TX500_MODEL
-				system("ls -la /system/sbin/");
-				system("touch /var/recov_6.dat");
+			{
+				system(TOUCH_DIR_CMD);
+				system(TOUCH_RECOV6_CMD);
 				//system("/system/sbin/recov_scv.sh");
 				//system("/system/sbin/alive.notifier end");
 				//system("/system/sbin/pwrd 10 10 &");
-			#endif
+			}
 		}
 		else{
 			system(MOND_FILE);
