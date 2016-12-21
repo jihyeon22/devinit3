@@ -5,7 +5,7 @@ DESTDIR		:= $(CURDIR)/out
 
 PREFIX		:= /system
 BINDIR		:= $(PREFIX)/sbin
-LINKPATH	:= /data/mds/system/sbin
+LINKPATH	:= /system/mds/system/sbin
 
 ###############################################################################
 # Compile
@@ -16,17 +16,23 @@ CFLAGS	:= $(EXTRA_CFLAGS)
 LDFLAGS	:= $(EXTRA_LDFLAGS)
 
 ###############################################################################
+# Board Setting
+
+BOARD	:=
+CFLAGS	+= -DBOARD_$(BOARD)
+
+###############################################################################
 # Target rules
 
 DTG_ENV	?= DTG_UPD_STAT
 
 CFLAGS	+= -DDTG_ENV_VAL=\"$(DTG_ENV)\"
-CFLAGS	+= -DBOARD_$(BOARD)
+
 
 LDFLAGS	+=
 
 OBJS	:=	src/checker.o src/md5.o
-APP		:=	devinit2
+APP		:=	devinit3
 
 all:		$(APP)
 
